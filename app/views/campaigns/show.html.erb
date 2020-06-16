@@ -20,5 +20,13 @@
   <%= @campaign.user_id %>
 </p>
 
+<h2>Comments</h2>
+<% for comment in @campaign.comments %>
+    <ul>
+      <li><%= comment.content %></li>
+  </ul>
+<% end %>
+
 <%= link_to 'Edit', edit_campaign_path(@campaign) %> |
+<%= link_to 'Add comment', campaign_comments_path(@campaign) %> |
 <%= link_to 'Back', campaigns_path %>
