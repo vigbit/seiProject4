@@ -5,26 +5,35 @@ class CampaignsController < ApplicationController
   # GET /campaigns.json
   def index
     @campaigns = Campaign.all
+    @users = User.all
+    @user = current_user
   end
 
   # GET /campaigns/1
   # GET /campaigns/1.json
   def show
+    @users = User.all
+    @user = current_user
   end
 
   # GET /campaigns/new
   def new
     @campaign = Campaign.new
+    @users = User.all
+    @user = current_user
   end
 
   # GET /campaigns/1/edit
   def edit
+    @users = User.all
+    @user = current_user
   end
 
   # POST /campaigns
   # POST /campaigns.json
   def create
     @campaign = Campaign.new(campaign_params)
+    @campaign.user = current_user
 
     respond_to do |format|
       if @campaign.save

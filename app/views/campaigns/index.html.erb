@@ -7,10 +7,11 @@
   <div class="card-body">
     <h5 class="card-title"><%= campaign.title %></h5>
     <p class="card-text"><%= campaign.content %></p>
-    <a href="#" class="btn btn-primary">Go somewhere</a>
+    <%= link_to 'Show', campaign, class: "btn btn-primary" %>
+    
   </div>
 
-  <p><small><%= link_to 'Show', campaign %>
+  <p><small>
   <%= link_to 'Edit', edit_campaign_path(campaign) %>
   <%= link_to 'Destroy', campaign, method: :delete, data: { confirm: 'Are you sure?' } %></small></p>
   

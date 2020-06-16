@@ -1,9 +1,9 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<nav class="navbar navbar-expand-lg navbar-light bg-light ">
 <a class="navbar-brand" href="#"><%= image_tag "logo.png" %></a>
 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
   <span class="navbar-toggler-icon"></span>
 </button>
-<div class="collapse navbar-collapse" id="navbarNav">
+<div class="collapse navbar-collapse d-flex justify-content-end" id="navbarNav">
   <ul class="navbar-nav">
   <li class="nav-item <%= 'active' if current_page?(root_path) %>">
     <%= link_to root_path, class: "nav-link" do %>Home
@@ -13,11 +13,16 @@
     <li class="nav-item">
       <%= link_to 'New Campaign', new_campaign_path, class: "nav-link" %>
     </li>
+
     <li class="nav-item">
-      <a class="nav-link" href="#">Pricing</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+    <% if user_signed_in? %>
+      <li class="nav-item">
+        <%= link_to @user.email.capitalize, user_session_path(@user.id), class: "nav-link disabled" %>
+      </li>
+      <%= link_to 'Log Out', destroy_user_session_path(@campaign), method: :delete, class: 'btn btn-outline-success btn-sm pl-4 pr-4 pt-2 pb-2' %>
+      <% else %>
+      <%= link_to 'Sign in', new_user_session_path, class: 'btn btn-outline-success btn-sm rounded-pill pl-4 pr-4 pt-2 pb-2' %>
+      <% end %>
     </li>
   </ul>
 </div>

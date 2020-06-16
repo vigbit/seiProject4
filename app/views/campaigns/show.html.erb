@@ -1,32 +1,21 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Title:</strong>
-  <%= @campaign.title %>
-</p>
+<div class="card" style="width: 30rem;">
 
-<p>
-  <strong>Img url:</strong>
-  <%= @campaign.img_url %>
-</p>
-
-<p>
-  <strong>Content:</strong>
-  <%= @campaign.content %>
-</p>
-
-<p>
-  <strong>User:</strong>
-  <%= @campaign.user_id %>
-</p>
-
-<h2>Comments</h2>
-<% for comment in @campaign.comments %>
-    <ul>
-      <li><%= comment.content %></li>
-  </ul>
-<% end %>
-
-<%= link_to 'Edit', edit_campaign_path(@campaign) %> |
-<%= link_to 'Add comment', campaign_comments_path(@campaign) %> |
-<%= link_to 'Back', campaigns_path %>
+  <%= image_tag (@campaign.img_url), class: "card-img-top"%>
+  <div class="card-body">
+    <h5 class="card-title"><%= @campaign.title %></h5>
+    <p class="card-text"><%= @campaign.content %></p>
+    <h6>Comments</h6>
+    <% for comment in @campaign.comments %>
+      <ul class="list-group">
+          <li class="list-group-item"><%= comment.content %></li>
+      </ul>
+    <% end %>
+    <%= link_to 'Edit', edit_campaign_path(@campaign) %> |
+    <%= link_to 'Add comment', new_campaign_comment_path(@campaign) %> |
+    <%= link_to 'Back', campaigns_path %>
+    
+  </div>
+  
+</div>

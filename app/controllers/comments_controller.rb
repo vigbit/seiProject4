@@ -6,16 +6,22 @@ class CommentsController < ApplicationController
   # GET /comments.json
   def index
     @comments = @campaign.comments
+    @users = User.all
+    @user = current_user
   end
 
   # GET /comments/1
   # GET /comments/1.json
   def show
+    @users = User.all
+    @user = current_user
   end
 
   # GET /comments/new
   def new
     @comment = @campaign.comments.build
+    @users = User.all
+    @user = current_user
   end
 
   # GET /comments/1/edit
@@ -26,6 +32,7 @@ class CommentsController < ApplicationController
   # POST /comments.json
   def create
     @comment = @campaign.comments.build(comment_params)
+    @comment.user = current_user
     puts "##################################################"
     respond_to do |format|
       if @comment.save
