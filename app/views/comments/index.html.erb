@@ -16,11 +16,10 @@
     <% @comments.each do |comment| %>
       <tr>
         <td><%= comment.content %></td>
-        <td><%= comment.campaign_id %></td>
-        <td><%= comment.user_id %></td>
-        <td><%= link_to 'Show', comment %></td>
-        <td><%= link_to 'Edit', edit_comment_path(comment) %></td>
-        <td><%= link_to 'Destroy', comment, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        
+        <td><%= link_to 'Show campaign', [@campaign] %></td>
+        <td><%= link_to 'Edit comment', edit_campaign_comment_path(@campaign, comment) %></td>
+        <td><%= link_to 'Destroy comment', [@campaign, comment], method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -28,5 +27,5 @@
 
 <br>
 
-<%= link_to 'New Comment', new_comment_path %>
+<%= link_to 'New Comment', new_campaign_comment_path(@campaign) %>
 
